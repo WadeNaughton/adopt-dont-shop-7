@@ -10,7 +10,7 @@ RSpec.describe 'the application index' do
 
     ApplicationPet.create!(application: application, pet: pet_1)
 
-    visit '/applications'
+    visit "/applications"
 
     expect(page).to have_content(application.name)
   end
