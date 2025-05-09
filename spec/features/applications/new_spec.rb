@@ -9,7 +9,7 @@ RSpec.describe 'Application new page' do
     expect(page).to have_current_path("/applications/new")
 
     fill_in('Name', with: "Jack Wade")
-    fill_in('Street Address', with: '69 Oak St.')
+    fill_in('Address', with: '69 Oak St.')
     fill_in('City', with: 'Gary')
     fill_in('State', with: 'IN')
     fill_in('Zip', with: '46401')
