@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_17_234657) do
 
   create_table "applications", force: :cascade do |t|
     t.string "name"
-    t.string "street_address"
+    t.string "address"
     t.string "city"
     t.string "state"
     t.string "zip"
