@@ -25,4 +25,14 @@ RSpec.describe 'Application new page' do
     expect(page).to have_content('I have many high stacks and bands')
     expect(page).to have_content('In Progress')
   end
+  
+  it 'shows an error after not fully completing form' do
+    visit "/applications/new"
+
+    click_button 'Submit'
+
+    expect(page).to have_current_path('/applications/new')
+    expect(page).to have_content('You have NOT fully completed your application!!!')
+
+  end
 end
