@@ -44,6 +44,13 @@ class PetsController < ApplicationController
     redirect_to "/pets"
   end
 
+  # def search   
+  # @pets = Pet.where('name LIKE :q', q: "%#{params[:q]}%")
+  # redirect_to "/applications/#{params[:redirect_id]}"
+
+   
+  # end
+
   private
 
   def pet_params

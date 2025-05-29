@@ -5,6 +5,9 @@ class ApplicationsController < ApplicationController
 
   def show
     @application = Application.find(params[:id])
+    @pets = Pet.where('name LIKE :q', q: "%#{params[:q]}%")
+    
+  
   end
 
   def new
@@ -21,6 +24,11 @@ class ApplicationsController < ApplicationController
       flash[:alert] = 'You have NOT fully completed your application!!!'
   end
 
+  end
+
+  def search   
+    @pets = Pet.where('name LIKE :q', q: "%#{params[:q]}%")
+    redirect_to "/applications/#{params[:redirect_id]}"
   end
 
   private
