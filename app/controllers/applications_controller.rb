@@ -6,8 +6,8 @@ class ApplicationsController < ApplicationController
   def show
     @application = Application.find(params[:id])
 
-    if params[:q].present?
-      @pets = Pet.where('name LIKE :q', q: "%#{params[:q]}%")
+    if params[:query].present?
+      @pets = Pet.where('name LIKE :query', query: "%#{params[:query]}%")
     end
   end
 
