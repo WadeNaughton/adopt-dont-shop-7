@@ -10,9 +10,9 @@
 <%end%>
 
 <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
-  <%= f.label :q, "Add a Pet to this Application:" %>
-  <%= f.text_field :q, id: :q %>
-  <%= hidden_field_tag 'redirect_id', @application.id %>
+  <%= f.label :query, "Add a Pet to this Application:" %>
+  <%= f.text_field :query %>
+  
   <%= f.submit "Search" %>
 <% end %>
 
