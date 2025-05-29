@@ -7,7 +7,7 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
 
     if params[:query].present?
-      @pets = Pet.where('name LIKE :query', query: "%#{params[:query]}%")
+      @pets = Pet.where('LOWER(name) LIKE :query', query: "%#{params[:query].downcase}%")
     end
   end
 
