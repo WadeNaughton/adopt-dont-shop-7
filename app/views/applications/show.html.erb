@@ -6,18 +6,18 @@
 <%= @application.description%>
 <%= @application.status%>
 <% @application.pets.each do |pet|%>
- <%=link_to "#{pet.name}", "/pets/#{pet.id}"%>
+  <%=link_to "#{pet.name}", "/pets/#{pet.id}"%>
 <%end%>
 
-<%= form_with url: '/search', method: :get, local: true do |f| %>
+<%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
   <%= f.label :q, "Add a Pet to this Application:" %>
   <%= f.text_field :q, id: :q %>
   <%= hidden_field_tag 'redirect_id', @application.id %>
   <%= f.submit "Search" %>
 <% end %>
 
-<% if !@pets.nil?%>
-    <% @pets.each do |pet|%>
+<% if !@pets.nil? && !@pets.empty? %>
+  <% @pets.each do |pet|%>
     <%=pet.name%>
-<%end%>
+  <%end%>
 <%end%>
