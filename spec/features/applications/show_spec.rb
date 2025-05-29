@@ -53,9 +53,9 @@ RSpec.describe 'Application show page' do
 
         visit "/applications/#{application.id}"
         expect(page).to have_content("Add a Pet to this Application")
-        fill_in "Name", with: "Lucille Bald"
-        click_button "Submit"
-        expect(page).to equal("/applications/#{application.id}")
+        fill_in "Add a Pet to this Application:", with: "Lucille Bald"
+        click_button "Search"
+        expect(page).to have_current_path("/applications/#{application.id}?query=Lucille+Bald&commit=Search")
         expect(page).to have_content("Lucille Bald")
 
     end
