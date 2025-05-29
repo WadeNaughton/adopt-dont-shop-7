@@ -1,13 +1,13 @@
-<%= @application.name%>
-<%= @application.address%>
-<%= @application.city%>
-<%= @application.state%>
-<%= @application.zip%>
-<%= @application.description%>
-<%= @application.status%>
-<% @application.pets.each do |pet|%>
-  <%=link_to "#{pet.name}", "/pets/#{pet.id}"%>
-<%end%>
+<%= @application.name %>
+<%= @application.address %>
+<%= @application.city %>
+<%= @application.state %>
+<%= @application.zip %>
+<%= @application.description %>
+<%= @application.status %>
+<% @application.pets.each do |pet| %>
+  <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+<% end %>
 
 <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
   <%= f.label :query, "Add a Pet to this Application:" %>
@@ -17,7 +17,7 @@
 <% end %>
 
 <% if !@pets.nil? && !@pets.empty? %>
-  <% @pets.each do |pet|%>
-    <%=pet.name%>
-  <%end%>
-<%end%>
+  <% @pets.each do |pet| %>
+    <%= pet.name %>
+  <% end %>
+<% end %>
