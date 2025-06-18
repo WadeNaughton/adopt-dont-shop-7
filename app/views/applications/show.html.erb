@@ -1,10 +1,32 @@
-<%= @application.name%>
-<%= @application.address%>
-<%= @application.city%>
-<%= @application.state%>
-<%= @application.zip%>
-<%= @application.description%>
-<%= @application.status%>
-<% @application.pets.each do |pet|%>
- <%=link_to "#{pet.name}", "/pets/#{pet.id}"%>
-<%end%>
+<%= @application.name %>
+<%= @application.address %>
+<%= @application.city %>
+<%= @application.state %>
+<%= @application.zip %>
+<%= @application.description %>
+<%= @application.status %>
+<% @application.pets.each do |pet| %>
+  <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+<% end %>
+
+<p>Pet on application</p> 
+<p><% if !@application.pets.empty? %>
+  <% @application.pets do |pet| %>
+    <%= pet.name %>
+  <% end %>
+<% else %>
+  n/a 
+<% end %>
+</p>
+
+<%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
+  <%= f.label :query, "Add a Pet to this Application:" %>
+  <%= f.text_field :query %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<% if !@pets.nil? && !@pets.empty? %>
+  <% @pets.each do |pet| %>
+    <%= pet.name %> <%= button_to 'Adopt This Pet', "/applications/#{@application.id}", method: :patch, params: { pet_id: pet.id } %>
+  <% end %>
+<% end %>
