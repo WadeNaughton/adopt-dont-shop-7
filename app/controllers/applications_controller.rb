@@ -5,9 +5,11 @@ class ApplicationsController < ApplicationController
   
   def show
     @application = Application.find(params[:id])
-
     if params[:query].present?
       @pets = Pet.where('LOWER(name) LIKE :query', query: "%#{params[:query].downcase}%")
+      if @pets.empty?
+        @message_result = 'No results found'
+      end
     end
   end
 
