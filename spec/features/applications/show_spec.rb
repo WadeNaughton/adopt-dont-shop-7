@@ -131,4 +131,28 @@ RSpec.describe 'Application show page' do
 
     expect(page).to have_content('No results found')
   end
+
+  it 'does not allow visitor to add duplicate pet to application' do
+    shelter = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
+    application = Application.create(name: 'Wade Smith', address: '123 Main Rd.', city: 'Denver', state: 'CO',
+                                     zip: '00000', description: 'bleh bleh bleh', status: 'In Progress')
+    Pet.create(adoptable: true, age: 1, breed: 'sphynx', name: 'Lucille Bald', shelter_id: shelter.id)
+    Pet.create(adoptable: true, age: 15, breed: 'tuxedo cat', name: 'Mr. O. Malley', shelter_id: shelter.id)
+    Pet.create(adoptable: true, age: 1, breed: 'wire-haired pointer', name: 'Roman', shelter_id: shelter.id)
+
+    ApplicationPet.create(application: application, pet: pet_1)
+    
+    visit "/applications/#{application.id}"
+
+    fill_in 'Add a Pet to this Application:', with: 'roman'
+
+    click_button 'Search'
+
+    click_button 'Adopt This Pet'
+
+    expect(page).to have_current_path("/applications/#{application.id}")
+    expect(page).to have_content('You already added this pet to your application')
+
+   
+  end
 end
