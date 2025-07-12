@@ -5,9 +5,11 @@ class ApplicationsController < ApplicationController
   
   def show
     @application = Application.find(params[:id])
-
     if params[:query].present?
       @pets = Pet.where('LOWER(name) LIKE :query', query: "%#{params[:query].downcase}%")
+      if @pets.empty?
+        @message_result = 'No results found'
+      end
     end
   end
 
@@ -19,8 +21,14 @@ class ApplicationsController < ApplicationController
     @pet = Pet.find(params[:pet_id])
     @application = Application.find(params[:id])
 
-    ApplicationPet.create(application: @application, pet: @pet)
-    redirect_to "/applications/#{@application.id}"
+    if @application.pets.include?(@pet)
+      redirect_to "/applications/#{@application.id}"
+      flash[:alert] = 'You already added this pet to your application'
+    else
+      ApplicationPet.create(application: @application, pet: @pet)
+      redirect_to "/applications/#{@application.id}"
+      flash[:alert] = 'Pet added successfully to application!'
+    end
   end
 
   def create
