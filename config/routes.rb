@@ -44,4 +44,5 @@ Rails.application.routes.draw do
 
   post "/applications", to: "applications#create"
   patch "/applications/:id", to: "applications#update"
+  patch '/applications/:id/submit', to: "applications#submit"
 end
