@@ -43,6 +43,15 @@ class ApplicationsController < ApplicationController
 
   end
 
+  def submit
+    application = Application.find(params[:id])
+
+    application.update(status: 'Pending')
+    redirect_to "/applications/#{application.id}"
+    flash[:alert] = 'Application submitted successfully!'
+    
+  end
+
   private
   def application_params
     params.permit(:name, :address, :city, :state, :zip, :description, :status)
