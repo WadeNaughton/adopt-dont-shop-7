@@ -1,3 +1,4 @@
+<% if @application.status == 'In Progress' %>
 <%= @application.name %>
 <%= @application.address %>
 <%= @application.city %>
@@ -9,7 +10,6 @@
 <% @application.pets.each do |pet| %>
   <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
 <% end %>
-
 </p>
 <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
   <%= f.label :query, "Add a Pet to this Application:" %>
@@ -22,4 +22,19 @@
   <% end %>
 <% else %>
   <%= @message_result %>
+<% end %>
+
+<% else %>
+  <%= @application.name %>
+<%= @application.address %>
+<%= @application.city %>
+<%= @application.state %>
+<%= @application.zip %>
+<%= @application.description %>
+<%= @application.status %>
+<p>Pet on application</p>
+<% @application.pets.each do |pet| %>
+  <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+<% end %>
+</p>
 <% end %>
