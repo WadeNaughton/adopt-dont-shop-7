@@ -171,5 +171,6 @@ RSpec.describe 'Application show page' do
     click_button 'Submit Application'
     expect(page).to have_content('Application submitted successfully!')
     expect(page).to_not have_content('In Progress')
+    expect(page).to_not have_content('Add Pet to this Application')
   end
 end
