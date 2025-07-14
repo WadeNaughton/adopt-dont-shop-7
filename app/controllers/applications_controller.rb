@@ -39,8 +39,7 @@ class ApplicationsController < ApplicationController
     else
       redirect_to "/applications/new"
       flash[:alert] = 'You have NOT fully completed your application!!!'
-  end
-
+    end
   end
 
   def submit
