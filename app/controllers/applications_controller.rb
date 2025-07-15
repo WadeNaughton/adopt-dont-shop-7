@@ -39,8 +39,19 @@ class ApplicationsController < ApplicationController
     else
       redirect_to "/applications/new"
       flash[:alert] = 'You have NOT fully completed your application!!!'
+    end
   end
 
+  def submit
+    application = Application.find(params[:id])
+    if application.pets.empty?
+      redirect_to "/applications/#{application.id}"
+      flash[:alert] = 'You must add at least ONE (1) pet to this application'
+    else
+      application.update(status: 'Pending')
+      redirect_to "/applications/#{application.id}"
+      flash[:alert] = 'Application submitted successfully!'
+    end
   end
 
   private
