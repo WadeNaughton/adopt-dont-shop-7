@@ -12,6 +12,8 @@ shelter_2 = Shelter.create(name: "RGV animal shelter", city: "Harlingen, TX", fo
 shelter_3 = Shelter.create(name: "Fancy pets of Colorado", city: "Denver, CO", foster_program: true, rank: 10)
 
 pet_1 = Pet.create(adoptable: true, age: 1, breed: 'sphynx', name: 'Lucille Bald', shelter_id: shelter.id)
+pet_2 = Pet.create(adoptable: true, age: 1, breed: 'wire-haired pointer', name: 'Jerry', shelter_id: shelter.id)
+pet_3 = Pet.create(adoptable: true, age: 1, breed: 'chocolate lab', name: 'Rick Ross', shelter_id: shelter_3.id)
 
 application = Application.create(name: 'Wade Smith', address: '123 Main Rd.', city: 'Denver', state: 'CO',
                                  zip: '00000', description: "bleh bleh bleh", status: 'In Progress')
