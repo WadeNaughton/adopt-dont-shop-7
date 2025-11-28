@@ -1,0 +1,11 @@
+<% @pet.each do |p| %>
+    
+
+    <%if @application.status == "Approved" %>
+        <%= p.name %> <%="Approved"%>
+    <%else%>
+        <%= p.name %>
+        <%=button_to "Approve", "/admin/applications/#{@application.id}", method: :patch %>
+    <%end%>
+
+<%end%>
