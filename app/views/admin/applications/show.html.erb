@@ -1,11 +1,14 @@
-<% @pet.each do |p| %>
-    
+<% @application.pets.each do |pet| %>
 
-    <%if @application.status == "Approved" %>
-        <%= p.name %> <%="Approved"%>
+
+    <%if pet.application_pets.first.status == "Approved" %>
+        <%= pet.name %> <%="Approved"%>
+    <%elsif pet.application_pets.first.status == "Reject" %>
+        <%= pet.name %> <%="Rejected"%>
     <%else%>
-        <%= p.name %>
-        <%=button_to "Approve", "/admin/applications/#{@application.id}", method: :patch %>
+        <%= pet.name%>
+        <%=button_to "Approve", "/admin/applications/#{@application.id}", name: "stat", value: "approve", method: :patch %>
+        <%= button_to "Reject", "/admin/applications/#{@application.id}", name: "stat", value: "reject", method: :patch %>
     <%end%>
 
 <%end%>
