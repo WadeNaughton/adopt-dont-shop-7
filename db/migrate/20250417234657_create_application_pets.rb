@@ -3,6 +3,7 @@ class CreateApplicationPets < ActiveRecord::Migration[7.1]
     create_table :application_pets do |t|
       t.references :application, null: false, foreign_key: true
       t.references :pet, null: false, foreign_key: true
+      t.string :status
 
       t.timestamps
     end
