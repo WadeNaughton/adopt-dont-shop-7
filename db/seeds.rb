@@ -18,4 +18,8 @@ pet_3 = Pet.create(adoptable: true, age: 1, breed: 'chocolate lab', name: 'Rick 
 application = Application.create(name: 'Wade Smith', address: '123 Main Rd.', city: 'Denver', state: 'CO',
                                  zip: '00000', description: "bleh bleh bleh", status: 'In Progress')
 
-# ApplicationPet.create!(application: application, pet: pet_1)
+application2 = Application.create(name: 'John Wayne', address: '123 terrry Rd.', city: 'Denver', state: 'CO',
+                                 zip: '00000', description: "bleh bleh bleh", status: 'In Progress')
+
+ApplicationPet.create!(application: application, pet: pet_1)
+ApplicationPet.create!(application: application2, pet: pet_1)
