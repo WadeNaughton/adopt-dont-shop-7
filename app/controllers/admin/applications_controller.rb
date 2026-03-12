@@ -3,7 +3,9 @@ class Admin::ApplicationsController < ApplicationController
     def show
         @application = Application.find(params[:id])
         @pet = @application.pets
-
+        @applicationpet = ApplicationPet.find(params[:id])
+        # require 'pry';binding.pry
+        @pet = Pet.find(@applicationpet.pet_id)
     end
 
     def update
@@ -16,7 +18,6 @@ class Admin::ApplicationsController < ApplicationController
     end
 
     private
-
     def application_params
         params.permit(:id, :name, :address, :city, :state, :zip, :description, :status)
     end
